@@ -15,7 +15,15 @@ import errorHandler from './src/middleware/error.js';
 
 const app = express();
 
-app.use(cors());
+app.use(cors({
+      allowedHeaders: ["Content-Type", "token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
+      exposedHeaders: ["token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
+      origin: ["http://localhost:3000", "http://35.154.208.216", "capacitor://localhost", "capacitor://35.154.208.216", "https://superareadev.vercel.app", "https://checkout.razorpay.com", "https://www.superarea.ai", "https://superarea.ai"],
+      methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
+      credentials: true,
+      preflightContinue: false,
+    }));
+
 app.use(express.json());
 app.use('/api/v1',v1router);
 app.use('/api/v1/users', userRoutes);
