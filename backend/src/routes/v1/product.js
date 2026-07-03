@@ -1,8 +1,8 @@
 import express from "express";
-import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from "../../controllers/product.controller.js";
-import { protect, restrictToAdmin } from "../../middleware/auth.middleware.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import { createProductSchema, updateProductSchema } from "../../validations/product.validation.js";
+import { createProduct, getAllProducts, getProductById, updateProduct, deleteProduct } from "../../controllers/product.js";
+import { protect, restrictToAdmin } from "../../middleware/auth.js";
+import { validate } from "../../middleware/validate.js";
+import { createProductSchema, updateProductSchema } from "../../validations/product.js";
 import { upload } from "../../config/cloudinary.js";
 
 const router = express.Router();

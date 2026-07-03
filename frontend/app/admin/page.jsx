@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { signOut } from "next-auth/react";
 import api from "@/lib/api";
 
 export default function AdminLoginPage() {
@@ -24,6 +25,9 @@ export default function AdminLoginPage() {
       
       if (token) {
         if (isAdmin) {
+          // Sign out of NextAuth so it doesn't instantly overwrite the admin token
+          await signOut({ redirect: false });
+          
           localStorage.setItem("token", token);
           localStorage.setItem("isAdmin", "true");
           window.location.href = "/admin/dashboard";

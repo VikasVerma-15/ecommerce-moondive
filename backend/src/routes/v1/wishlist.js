@@ -1,8 +1,8 @@
 import express from "express";
-import { getWishlist, addProduct, removeProduct } from "../../controllers/wishlist.controller.js";
-import { protect } from "../../middleware/auth.middleware.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import { addProductToWishlistSchema } from "../../validations/wishlist.validation.js";
+import { getWishlist, addProduct, removeProduct } from "../../controllers/wishlist.js";
+import { protect } from "../../middleware/auth.js";
+import { validate } from "../../middleware/validate.js";
+import { addProductToWishlistSchema } from "../../validations/wishlist.js";
 
 const router = express.Router();
 

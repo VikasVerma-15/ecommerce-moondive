@@ -1,7 +1,7 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import { ProductService } from "../services/product.service.js";
+import { ProductService } from "../services/product.js";
 import { ApiResponse } from "../utils/response.js";
-import { Category } from "../models/category.model.js";
+import { Category } from "../models/category.js";
 
 const productService = new ProductService();
 

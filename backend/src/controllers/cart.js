@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import { CartService } from "../services/cart.service.js";
+import { CartService } from "../services/cart.js";
 import { ApiResponse } from "../utils/response.js";
 
 const cartService = new CartService();

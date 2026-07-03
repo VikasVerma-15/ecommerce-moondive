@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Image from "next/image";
 import api from "@/lib/api";
 import { toast } from "react-hot-toast";
+import { ShoppingBag, HelpCircle, DollarSign, Package, Tag, Star, Sun, UploadCloud } from "lucide-react";
 
 export default function AdminDashboard() {
   const router = useRouter();
@@ -209,80 +210,137 @@ export default function AdminDashboard() {
         {activeTab === "products" && (
           <>
             {/* ADD PRODUCT FORM */}
-            <div className="bg-white shadow-md rounded-md p-8 border border-gray-100">
-              <h1 className="text-3xl font-medium tracking-wide mb-2 text-gray-900">Admin Dashboard</h1>
-          <p className="text-gray-500 mb-8">Add a new product to the database.</p>
-
-          <form onSubmit={handleSubmit} className="flex flex-col gap-6">
-            
-            <div className="grid grid-cols-2 gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-500 font-medium">Product Title</label>
-                <input type="text" name="title" value={formData.title} onChange={handleChange} required className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-500 font-medium">Category</label>
-                <input type="text" name="category" value={formData.category} onChange={handleChange} required placeholder="e.g. Electronics, Clothing..." className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-500 font-medium">Description</label>
-              <textarea name="description" value={formData.description} onChange={handleChange} required rows={4} className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-            </div>
-
-            <div className="grid grid-cols-3 gap-6">
-              <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-500 font-medium">Price ($)</label>
-                <input type="number" name="price" value={formData.price} onChange={handleChange} required min="0" step="0.01" className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-500 font-medium">Discount Price</label>
-                <input type="number" name="discountPrice" value={formData.discountPrice} onChange={handleChange} min="0" step="0.01" placeholder="Optional" className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-              </div>
-              <div className="flex flex-col gap-2">
-                <label className="text-sm text-gray-500 font-medium">Stock Qty</label>
-                <input type="number" name="stock" value={formData.stock} onChange={handleChange} required min="0" className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
-              </div>
-            </div>
-
-            <div className="flex flex-col gap-4 py-2">
-              <div className="flex items-center gap-8">
-                <label className="flex items-center gap-2 cursor-pointer text-gray-700">
-                  <input type="checkbox" name="isFlashSale" checked={formData.isFlashSale} onChange={handleChange} className="w-5 h-5 text-[#db4444] rounded border-gray-300 focus:ring-[#db4444]" />
-                  Is Flash Sale?
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer text-gray-700">
-                  <input type="checkbox" name="isBestSeller" checked={formData.isBestSeller} onChange={handleChange} className="w-5 h-5 text-[#db4444] rounded border-gray-300 focus:ring-[#db4444]" />
-                  Is Best Seller?
-                </label>
-                <label className="flex items-center gap-2 cursor-pointer text-gray-700">
-                  <input type="checkbox" name="isNewArrival" checked={formData.isNewArrival} onChange={handleChange} className="w-5 h-5 text-[#db4444] rounded border-gray-300 focus:ring-[#db4444]" />
-                  Is New Arrival?
-                </label>
-              </div>
-              
-              {formData.isFlashSale && (
-                <div className="flex flex-col gap-2 w-1/2">
-                  <label className="text-sm text-gray-500 font-medium">Flash Sale End Date & Time</label>
-                  <input type="datetime-local" name="flashSaleEndDate" value={formData.flashSaleEndDate} onChange={handleChange} required className="w-full bg-[#f5f5f5] rounded-md py-3 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300" />
+            <div className="bg-[#F8F9FA] p-8 -mx-8 -mt-8 rounded-b-md">
+              <div className="bg-white rounded-lg shadow-sm p-8 border border-gray-100 w-full max-w-4xl mx-auto">
+                
+                {/* Header */}
+                <div className="flex items-start justify-between mb-10">
+                  <div className="flex items-center gap-4">
+                    <div className="w-12 h-12 rounded-full bg-red-50 flex items-center justify-center">
+                      <ShoppingBag size={24} className="text-[#DB4444]" strokeWidth={1.5} />
+                    </div>
+                    <div>
+                      <h1 className="text-2xl font-bold text-gray-900 mb-1">Admin Dashboard</h1>
+                      <p className="text-sm text-gray-500">Add a new product to the database.</p>
+                    </div>
+                  </div>
                 </div>
-              )}
+
+                <div className="flex items-center gap-2 mb-6 pb-4 border-b border-gray-100">
+                  <ShoppingBag size={20} className="text-[#DB4444]" strokeWidth={1.5} />
+                  <h2 className="text-lg font-semibold text-gray-900">Product Information</h2>
+                </div>
+
+                <form onSubmit={handleSubmit} className="flex flex-col gap-8">
+                  
+                  {/* Title & Category */}
+                  <div className="grid grid-cols-2 gap-6">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium text-gray-700">Product Title</label>
+                      <input type="text" name="title" value={formData.title} onChange={handleChange} required placeholder="Enter product title" className="w-full bg-white border border-gray-200 rounded-md py-2.5 px-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm" />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium text-gray-700">Category</label>
+                      <div className="relative">
+                        <input type="text" name="category" value={formData.category} onChange={handleChange} required placeholder="e.g. Electronics, Clothing..." className="w-full bg-white border border-gray-200 rounded-md py-2.5 px-4 appearance-none focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm" />
+                        <div className="absolute inset-y-0 right-4 flex items-center pointer-events-none">
+                          <svg className="w-4 h-4 text-gray-400" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="2" d="M19 9l-7 7-7-7"></path></svg>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Description */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-gray-700">Description</label>
+                    <textarea name="description" value={formData.description} onChange={handleChange} required placeholder="Describe your product..." rows={4} className="w-full bg-white border border-gray-200 rounded-md py-2.5 px-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm resize-none" />
+                  </div>
+
+                  {/* Price, Discount, Stock */}
+                  <div className="grid grid-cols-3 gap-6">
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium text-gray-700">Price ($)</label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none border-r border-gray-200 pr-3 bg-gray-50 rounded-l-md">
+                          <DollarSign size={16} className="text-gray-500" />
+                        </div>
+                        <input type="number" name="price" value={formData.price} onChange={handleChange} required min="0" step="0.01" placeholder="0.00" className="w-full bg-white border border-gray-200 rounded-md py-2.5 pl-14 pr-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm" />
+                      </div>
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium text-gray-700">Discount Price</label>
+                      <input type="number" name="discountPrice" value={formData.discountPrice} onChange={handleChange} min="0" step="0.01" placeholder="Optional" className="w-full bg-white border border-gray-200 rounded-md py-2.5 px-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm" />
+                    </div>
+                    <div className="flex flex-col gap-2">
+                      <label className="text-sm font-medium text-gray-700">Stock Qty</label>
+                      <div className="relative">
+                        <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none border-r border-gray-200 pr-3 bg-gray-50 rounded-l-md">
+                          <Package size={16} className="text-gray-500" />
+                        </div>
+                        <input type="number" name="stock" value={formData.stock} onChange={handleChange} required min="0" placeholder="0" className="w-full bg-white border border-gray-200 rounded-md py-2.5 pl-14 pr-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] focus:border-[#DB4444] text-sm" />
+                      </div>
+                    </div>
+                  </div>
+
+                  {/* Custom Checkboxes */}
+                  <div className="grid grid-cols-3 gap-6">
+                    <label className={`flex items-center gap-4 p-4 border rounded-md cursor-pointer transition-colors ${formData.isFlashSale ? 'border-[#DB4444] bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+                      <input type="checkbox" name="isFlashSale" checked={formData.isFlashSale} onChange={handleChange} className="hidden" />
+                      <Tag size={20} className={formData.isFlashSale ? "text-[#DB4444]" : "text-gray-400"} />
+                      <span className="text-sm font-medium text-gray-700">Is Flash Sale?</span>
+                    </label>
+
+                    <label className={`flex items-center gap-4 p-4 border rounded-md cursor-pointer transition-colors ${formData.isBestSeller ? 'border-[#DB4444] bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+                      <input type="checkbox" name="isBestSeller" checked={formData.isBestSeller} onChange={handleChange} className="hidden" />
+                      <Star size={20} className={formData.isBestSeller ? "text-[#DB4444]" : "text-gray-400"} />
+                      <span className="text-sm font-medium text-gray-700">Is Best Seller?</span>
+                    </label>
+
+                    <label className={`flex items-center gap-4 p-4 border rounded-md cursor-pointer transition-colors ${formData.isNewArrival ? 'border-[#DB4444] bg-red-50' : 'border-gray-200 hover:bg-gray-50'}`}>
+                      <input type="checkbox" name="isNewArrival" checked={formData.isNewArrival} onChange={handleChange} className="hidden" />
+                      <Sun size={20} className={formData.isNewArrival ? "text-[#DB4444]" : "text-gray-400"} />
+                      <span className="text-sm font-medium text-gray-700">Is New Arrival?</span>
+                    </label>
+                  </div>
+
+                  {formData.isFlashSale && (
+                    <div className="flex flex-col gap-2 w-1/3">
+                      <label className="text-sm font-medium text-gray-700">Flash Sale End Date</label>
+                      <input type="datetime-local" name="flashSaleEndDate" value={formData.flashSaleEndDate} onChange={handleChange} required className="w-full bg-white border border-gray-200 rounded-md py-2.5 px-4 focus:outline-none focus:ring-1 focus:ring-[#DB4444] text-sm" />
+                    </div>
+                  )}
+
+                  {/* File Upload */}
+                  <div className="flex flex-col gap-2">
+                    <label className="text-sm font-medium text-gray-700">Product Images (Max 5)</label>
+                    <div className="relative border-2 border-dashed border-gray-200 rounded-lg p-6 flex items-center justify-between hover:bg-gray-50 transition-colors">
+                      <input type="file" name="images" multiple accept="image/*" onChange={handleImageChange} className="absolute inset-0 w-full h-full opacity-0 cursor-pointer" />
+                      <div className="flex items-center gap-4">
+                        <div className="w-10 h-10 rounded-full bg-red-50 flex items-center justify-center">
+                          <UploadCloud size={20} className="text-[#DB4444]" />
+                        </div>
+                        <div>
+                          <p className="text-sm font-medium text-gray-900">Choose files <span className="font-normal text-gray-500">or drag and drop</span></p>
+                          <p className="text-xs text-gray-500 mt-1">PNG, JPG, JPEG up to 5MB each</p>
+                        </div>
+                      </div>
+                      <button type="button" className="px-4 py-2 border border-gray-200 rounded-md text-sm font-medium text-gray-700 pointer-events-none bg-white">
+                        Browse Files
+                      </button>
+                    </div>
+                    {images && <p className="text-sm text-green-600 mt-1">{images.length} file(s) selected</p>}
+                  </div>
+
+                  {error && <p className="text-red-500 text-sm">{error}</p>}
+                  {success && <p className="text-green-600 text-sm">{success}</p>}
+
+                  <button type="submit" disabled={loading} className="w-full h-14 mt-4 bg-[#DB4444] text-white font-medium rounded-md hover:bg-red-600 transition-colors disabled:bg-red-400 flex items-center justify-center gap-2">
+                    <Package size={20} />
+                    {loading ? "Adding Product..." : "Add Product"}
+                  </button>
+                </form>
+              </div>
             </div>
-
-            <div className="flex flex-col gap-2">
-              <label className="text-sm text-gray-500 font-medium">Product Images (Max 5)</label>
-              <input type="file" name="images" multiple accept="image/*" onChange={handleImageChange} className="w-full text-gray-500 file:mr-4 file:py-2 file:px-4 file:rounded-md file:border-0 file:text-sm file:font-semibold file:bg-gray-100 file:text-gray-700 hover:file:bg-gray-200" />
-            </div>
-
-            {error && <p className="text-red-500 text-sm">{error}</p>}
-            {success && <p className="text-green-600 text-sm">{success}</p>}
-
-            <button type="submit" disabled={loading} className="w-full h-14 mt-4 bg-[#db4444] text-white font-medium rounded-[4px] hover:bg-red-600 transition-colors disabled:bg-red-400">
-              {loading ? "Adding Product..." : "Add Product"}
-            </button>
-          </form>
-        </div>
 
         {/* LIST OF PRODUCTS */}
         <div className="bg-white shadow-md rounded-md p-8 border border-gray-100">

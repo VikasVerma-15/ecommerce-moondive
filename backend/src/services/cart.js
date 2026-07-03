@@ -1,4 +1,4 @@
-import { CartRepository } from '../repositories/cart.repository.js';
+import { CartRepository } from '../repositories/cart.js';
 import AppError from '../utils/apperror.js';
 
 const cartRepo = new CartRepository();

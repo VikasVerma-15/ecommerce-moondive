@@ -60,9 +60,6 @@ export default async function NewArrival() {
             <p className="text-gray-300 text-sm mb-4 max-w-[250px] leading-relaxed line-clamp-3">
               {items[0].description}
             </p>
-            <Link href={items[0].link} className="text-white font-medium border-b border-gray-400 hover:border-white transition-colors pb-1">
-              Shop Now
-            </Link>
           </div>
         </div>
 
@@ -80,9 +77,6 @@ export default async function NewArrival() {
               <p className="text-gray-300 text-sm mb-4 max-w-[250px] leading-relaxed line-clamp-2">
                 {items[1].description}
               </p>
-              <Link href={items[1].link} className="text-white font-medium border-b border-gray-400 hover:border-white transition-colors pb-1">
-                Shop Now
-              </Link>
             </div>
           </div>
 
@@ -100,9 +94,6 @@ export default async function NewArrival() {
                 <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                   {items[2].description}
                 </p>
-                <Link href={items[2].link} className="text-white font-medium border-b border-gray-400 hover:border-white transition-colors pb-1">
-                  Shop Now
-                </Link>
               </div>
             </div>
 
@@ -117,9 +108,6 @@ export default async function NewArrival() {
                 <p className="text-gray-300 text-sm mb-3 line-clamp-2">
                   {items[3].description}
                 </p>
-                <Link href={items[3].link} className="text-white font-medium border-b border-gray-400 hover:border-white transition-colors pb-1">
-                  Shop Now
-                </Link>
               </div>
             </div>
 

@@ -1,4 +1,4 @@
-import { Wishlist } from "../models/wishlist.model.js";
+import { Wishlist } from "../models/wishlist.js";
 
 export class WishlistRepository {
     async getWishlistByUserId(userId) {

@@ -1,12 +1,12 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import { UserService } from "../services/user.service.js";
+import { UserService } from "../services/user.js";
 import { ApiResponse } from "../utils/response.js";
 
 const userService = new UserService();
 
 export const registerUser = asyncHandler(async (req, res) => {
 
-    const userData = req.body;
+    const userData = req.body || {};
 
     const newUser = await userService.registerUser(userData);
 
@@ -14,12 +14,12 @@ export const registerUser = asyncHandler(async (req, res) => {
 });
 
 export const registerAdmin = asyncHandler(async (req, res) => {
-    const newAdmin = await userService.registerAdmin(req.body);
+    const newAdmin = await userService.registerAdmin(req.body || {});
     res.status(201).json(new ApiResponse(201, newAdmin, "Admin registered successfully!"));
 });
 
 export const loginUser = asyncHandler(async (req, res) => {
-    const { email, password } = req.body;
+    const { email, password } = req.body || {};
 
     const { user, token } = await userService.loginUser(email, password);
 
@@ -27,7 +27,7 @@ export const loginUser = asyncHandler(async (req, res) => {
 });
 
 export const googleLogin = asyncHandler(async (req, res) => {
-    const { name, email } = req.body;
+    const { name, email } = req.body || {};
 
     if (!email || !name) {
         return res.status(400).json(new ApiResponse(400, null, "Name and email are required for Google Login"));

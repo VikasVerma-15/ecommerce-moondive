@@ -1,8 +1,8 @@
 import express from "express";
-import { getCart, addToCart, updateQuantity, removeProduct, clearCart } from "../../controllers/cart.controller.js";
-import { protect } from "../../middleware/auth.middleware.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import { addToCartSchema, updateQuantitySchema } from "../../validations/cart.validation.js";
+import { getCart, addToCart, updateQuantity, removeProduct, clearCart } from "../../controllers/cart.js";
+import { protect } from "../../middleware/auth.js";
+import { validate } from "../../middleware/validate.js";
+import { addToCartSchema, updateQuantitySchema } from "../../validations/cart.js";
 
 const router = express.Router();
 

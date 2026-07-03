@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import { WishlistService } from "../services/wishlist.service.js";
+import { WishlistService } from "../services/wishlist.js";
 import { ApiResponse } from "../utils/response.js";
 
 const wishlistService = new WishlistService();

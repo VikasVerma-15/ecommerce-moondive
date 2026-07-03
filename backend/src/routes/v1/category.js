@@ -1,8 +1,8 @@
 import express from "express";
-import { createCategory, getAllCategories, getCategoryById, updateCategory, deleteCategory } from "../../controllers/category.controller.js";
-import { protect, restrictToAdmin } from "../../middleware/auth.middleware.js";
-import { validate } from "../../middleware/validate.middleware.js";
-import { createCategorySchema, updateCategorySchema } from "../../validations/category.validation.js";
+import { createCategory, getAllCategories, getCategoryById, updateCategory, deleteCategory } from "../../controllers/category.js";
+import { protect, restrictToAdmin } from "../../middleware/auth.js";
+import { validate } from "../../middleware/validate.js";
+import { createCategorySchema, updateCategorySchema } from "../../validations/category.js";
 import { upload } from "../../config/cloudinary.js";
 
 const router = express.Router();

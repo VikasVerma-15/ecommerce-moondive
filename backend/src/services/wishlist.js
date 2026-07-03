@@ -1,4 +1,4 @@
-import { WishlistRepository } from '../repositories/wishlist.repository.js';
+import { WishlistRepository } from '../repositories/wishlist.js';
 import AppError from '../utils/apperror.js';
 
 const wishlistRepo = new WishlistRepository();

@@ -1,7 +1,7 @@
 import jwt from "jsonwebtoken";
 import AppError from "../utils/apperror.js";
 import asyncHandler from "../utils/asyncHandler.js";
-import { User } from "../models/user.model.js";
+import { User } from "../models/user.js";
 
 // Middleware to protect routes (require login)
 export const protect = asyncHandler(async (req, res, next) => {

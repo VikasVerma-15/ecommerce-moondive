@@ -1,6 +1,6 @@
 import express from "express";
-import { registerUser, loginUser, googleLogin, getAllUsers, deleteUser, registerAdmin, updateUser, getUserProfile, forgotPassword, resetPassword, changePassword } from "../../controllers/user.controller.js";
-import { protect, restrictToAdmin } from "../../middleware/auth.middleware.js";
+import { registerUser, loginUser, googleLogin, getAllUsers, deleteUser, registerAdmin, updateUser, getUserProfile, forgotPassword, resetPassword, changePassword } from "../../controllers/user.js";
+import { protect, restrictToAdmin } from "../../middleware/auth.js";
 
 const router = express.Router();
 

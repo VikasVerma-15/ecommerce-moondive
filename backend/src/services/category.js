@@ -1,4 +1,4 @@
-import { CategoryRepository } from '../repositories/category.repository.js';
+import { CategoryRepository } from '../repositories/category.js';
 import AppError from '../utils/apperror.js';
 
 const categoryRepo = new CategoryRepository();

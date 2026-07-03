@@ -4,9 +4,11 @@ import { Heart, Eye } from 'lucide-react';
 import api from '@/lib/api';
 import { useState } from 'react';
 import { toast } from 'react-hot-toast';
+import { useRouter } from 'next/navigation';
 
 const ProductCard = ({ product }) => {
   const [isAdding, setIsAdding] = useState(false);
+  const router = useRouter();
 
   const handleAddToCart = async (e) => {
     e.stopPropagation(); // Prevent card click
@@ -67,10 +69,10 @@ const ProductCard = ({ product }) => {
         {/* Actions (Wishlist & View) */}
         <div className="absolute top-3 right-3 flex flex-col gap-2">
           <button onClick={handleAddToWishlist} className={`bg-white rounded-full p-2 shadow-sm transition-colors ${isWished ? 'text-[#DB4444]' : 'text-black hover:bg-gray-100'}`}>
-            <Heart size={20} className={isWished ? 'fill-current' : ''} />
+            <Heart size={20} className={`pointer-events-none ${isWished ? 'fill-current' : ''}`} />
           </button>
-          <button className="bg-white rounded-full p-2 shadow-sm hover:bg-gray-100 transition-colors">
-            <Eye size={20} className="text-black" />
+          <button onClick={(e) => { e.stopPropagation(); router.push(`/products/${product.id || product._id}`); }} className="bg-white rounded-full p-2 shadow-sm hover:bg-gray-100 transition-colors">
+            <Eye size={20} className="text-black pointer-events-none" />
           </button>
         </div>
 

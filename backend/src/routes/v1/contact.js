@@ -1,6 +1,6 @@
 import express from "express";
-import { submitContact, getAllContacts } from "../../controllers/contact.controller.js";
-import { protect, restrictToAdmin } from "../../middleware/auth.middleware.js";
+import { submitContact, getAllContacts } from "../../controllers/contact.js";
+import { protect, restrictToAdmin } from "../../middleware/auth.js";
 
 const router = express.Router();
 

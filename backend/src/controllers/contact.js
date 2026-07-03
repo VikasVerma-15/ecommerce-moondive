@@ -1,5 +1,5 @@
 import asyncHandler from "../utils/asyncHandler.js";
-import { Contact } from "../models/contact.model.js";
+import { Contact } from "../models/contact.js";
 import { ApiResponse } from "../utils/response.js";
 
 // @desc    Submit a contact message
