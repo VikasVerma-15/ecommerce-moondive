@@ -1,8 +1,9 @@
 import ExploreProductsSlider from './ExploreProductsSlider';
+import { getApiUrl } from '@/lib/apiUrl';
 
 const getAllProducts = async () => {
   try {
-    const res = await fetch('http://localhost:3001/api/v1/products', { cache: 'no-store' });
+    const res = await fetch(getApiUrl('products'), { cache: 'no-store' });
     const json = await res.json();
     return json.data || [];
   } catch (error) {

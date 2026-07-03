@@ -1,12 +1,13 @@
 import ProductCard from '@/components/ProductCard';
 import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
+import { getApiUrl } from '@/lib/apiUrl';
 
 const getProducts = async (category) => {
   try {
-    const url = category 
-      ? `http://localhost:3001/api/v1/products?category=${category}` 
-      : 'http://localhost:3001/api/v1/products';
+    const url = category
+      ? getApiUrl(`products?category=${category}`)
+      : getApiUrl('products');
     const res = await fetch(url, { cache: 'no-store' });
     const json = await res.json();
     return json.data || [];

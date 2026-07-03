@@ -1,5 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
+import { getApiUrl } from "@/lib/apiUrl";
 
 export const authOptions = {
   providers: [
@@ -19,7 +20,7 @@ export const authOptions = {
     async signIn({ user, account }) {
       if (account.provider === "google") {
         try {
-          const res = await fetch("http://localhost:3001/api/v1/users/google", {
+          const res = await fetch(getApiUrl("users/google"), {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify({

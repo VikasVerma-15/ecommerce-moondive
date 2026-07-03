@@ -1,8 +1,8 @@
 import axios from 'axios';
+import { getApiBaseUrl } from './apiUrl';
 
 const api = axios.create({
-  // Proxy requests through Next.js to bypass CORS
-  baseURL: process.env.NEXT_PUBLIC_API_URL || '/backend',
+  baseURL: getApiBaseUrl(),
   headers: {
     'Content-Type': 'application/json',
   },

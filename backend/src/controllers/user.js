@@ -79,7 +79,8 @@ export const forgotPassword = asyncHandler(async (req, res) => {
     // In a real application, we would send an email here with a link containing the resetToken.
     // For this development version, we will just return it in the response so the frontend can display it or the developer can copy it.
     
-    const resetUrl = `http://localhost:3000/reset-password?token=${resetToken}`;
+    const frontendUrl = process.env.FRONTEND_URL || 'http://localhost:3000';
+    const resetUrl = `${frontendUrl}/reset-password?token=${resetToken}`;
     
     res.status(200).json(new ApiResponse(200, { resetToken, resetUrl }, "Password reset link generated. Check console/response for link!"));
 });

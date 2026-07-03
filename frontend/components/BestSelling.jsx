@@ -1,9 +1,10 @@
 import ProductCard from './ProductCard';
 import Link from 'next/link';
+import { getApiUrl } from '@/lib/apiUrl';
 
 const getBestSellingProducts = async () => {
   try {
-    const res = await fetch('http://localhost:3001/api/v1/products?isBestSeller=true', { cache: 'no-store' });
+    const res = await fetch(getApiUrl('products?isBestSeller=true'), { cache: 'no-store' });
     const json = await res.json();
     return json.data || [];
   } catch (error) {

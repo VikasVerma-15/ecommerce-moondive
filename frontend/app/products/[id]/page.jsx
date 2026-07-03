@@ -1,9 +1,10 @@
 import Link from 'next/link';
 import ProductDetailsClient from './ProductDetailsClient';
+import { getApiUrl } from '@/lib/apiUrl';
 
 const getProduct = async (id) => {
   try {
-    const res = await fetch(`http://localhost:3001/api/v1/products/${id}`, { cache: 'no-store' });
+    const res = await fetch(getApiUrl(`products/${id}`), { cache: 'no-store' });
     if (!res.ok) return null;
     const json = await res.json();
     return json.data;
@@ -15,7 +16,7 @@ const getProduct = async (id) => {
 
 const getRelatedProducts = async (categoryId, currentProductId) => {
   try {
-    const res = await fetch(`http://localhost:3001/api/v1/products?category=${categoryId}`, { cache: 'no-store' });
+    const res = await fetch(getApiUrl(`products?category=${categoryId}`), { cache: 'no-store' });
     if (!res.ok) return [];
     const json = await res.json();
     const allProducts = json.data || [];
