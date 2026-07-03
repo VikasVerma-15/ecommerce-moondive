@@ -18,7 +18,7 @@ const app = express();
 app.use(cors({
       allowedHeaders: ["Content-Type", "token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
       exposedHeaders: ["token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
-      origin: ["http://localhost:3000", "http://35.154.208.216", "capacitor://localhost", "capacitor://35.154.208.216", "https://ecommerce-moondive-78m6.vercel.app/", "https://checkout.razorpay.com", "https://www.superarea.ai", "https://superarea.ai"],
+      origin: ["http://localhost:3000", "http://35.154.208.216", "capacitor://localhost", "capacitor://35.154.208.216", "https://ecommerce-moondive-78m6.vercel.app", "https://checkout.razorpay.com", "https://www.superarea.ai", "https://superarea.ai"],
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
       preflightContinue: false,

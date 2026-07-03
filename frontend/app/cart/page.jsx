@@ -26,7 +26,7 @@ export default function CartPage() {
         setLoading(false);
         return;
       }
-      const response = await api.get("https://ecommerce-moondive-1.onrender.com/cart");
+      const response = await api.get("https://ecommerce-moondive-1.onrender.com/api/v1/cart");
       setCartItems(response.data.data?.items || []);
     } catch (err) {
       setError("Failed to fetch cart. Please try again.");
