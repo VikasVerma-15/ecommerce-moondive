@@ -1,4 +1,5 @@
 import express from 'express';
+import cors from 'cors';
 
 import serverconfig from './src/config/index.js';
 import v1router from './src/routes/v1/ping.js';
@@ -14,6 +15,7 @@ import errorHandler from './src/middleware/error.js';
 
 const app = express();
 
+app.use(cors());
 app.use(express.json());
 app.use('/api/v1',v1router);
 app.use('/api/v1/users', userRoutes);
