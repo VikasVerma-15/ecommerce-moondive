@@ -17,20 +17,21 @@ const app = express();
 
 const allowedOrigins = [
       "http://localhost:3000",
-      process.env.FRONTEND_URL,
-      "http://35.154.208.216",
-      "capacitor://localhost",
-      "capacitor://35.154.208.216",
       "https://ecommerce-moondive-78m6.vercel.app",
-      "https://checkout.razorpay.com",
-      "https://www.superarea.ai",
-      "https://superarea.ai",
+      "https://ecommerce-moondive.vercel.app"
     ].filter(Boolean);
 
 app.use(cors({
       allowedHeaders: ["Content-Type", "token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
       exposedHeaders: ["token", "authorization", "ipaddress", "latitude", "longitude", "machineid"],
-      origin: allowedOrigins,
+      origin: function (origin, callback) {
+        if (!origin) return callback(null, true);
+        if (allowedOrigins.indexOf(origin) !== -1 || origin.endsWith('.vercel.app')) {
+          return callback(null, true);
+        } else {
+          callback(new Error('Not allowed by CORS'));
+        }
+      },
       methods: "GET,HEAD,PUT,PATCH,POST,DELETE",
       credentials: true,
       preflightContinue: false,
