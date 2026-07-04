@@ -1,7 +1,7 @@
 "use client";
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
 import { Search, Heart, ShoppingCart, User, ShoppingBag, XCircle, Star, LogOut } from 'lucide-react';
 import api from '@/lib/api';
@@ -10,7 +10,9 @@ import { signOut } from "next-auth/react";
 
 const Navbar = () => {
   const pathname = usePathname();
+  const router = useRouter();
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const [searchQuery, setSearchQuery] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
   const [cartCount, setCartCount] = useState(0);
@@ -75,6 +77,18 @@ const Navbar = () => {
 
 
 
+  const handleSearch = () => {
+    if (searchQuery.trim()) {
+      router.push(`/products?category=${encodeURIComponent(searchQuery.trim().toLowerCase())}`);
+    }
+  };
+
+  const handleKeyDown = (e) => {
+    if (e.key === 'Enter') {
+      handleSearch();
+    }
+  };
+
   const handleLogout = async () => {
     if (typeof window !== 'undefined') {
       localStorage.removeItem('token');
@@ -91,16 +105,16 @@ const Navbar = () => {
   };
 
   const getLinkClasses = (path) => {
-    return `font-medium hover:text-gray-600 transition-colors ${
+    return `font-medium hover:text-[#DB4444] transition-colors hover-underline-animation ${
       pathname === path 
-        ? 'text-gray-900 underline underline-offset-4 decoration-2' 
-        : 'text-gray-900'
+        ? 'text-[#DB4444] font-semibold' 
+        : 'text-gray-800'
     }`;
   };
 
   return (
-    <div className="w-full border-b border-gray-200 mt-[10px] lg:mt-[20px] relative z-50">
-      <div className="section-width px-4 xl:px-0 mb-[16px]">
+    <div className="w-full border-b border-gray-200/50 sticky top-0 z-50 glass transition-all duration-300">
+      <div className="section-width px-4 xl:px-0 py-[16px]">
         <div className="flex items-center justify-between h-[38px] lg:gap-[148px]">
           
           {/* Logo */}
@@ -130,29 +144,34 @@ const Navbar = () => {
           <div className="flex items-center space-x-2 md:space-x-6 ml-auto">
             
             {/* Search Box */}
-            <div className="relative hidden sm:block">
+            <div className="relative hidden sm:block group">
               <input
                 type="text"
+                value={searchQuery}
+                onChange={(e) => setSearchQuery(e.target.value)}
+                onKeyDown={handleKeyDown}
                 placeholder="What are you looking for?"
-                className="w-48 lg:w-64 bg-[#f5f5f5] rounded-md py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-1 focus:ring-gray-300"
+                className="w-48 lg:w-64 bg-[#f5f5f5] rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#DB4444]/50 transition-all duration-300"
               />
-              <Search className="absolute right-3 top-2.5 h-4 w-4 text-gray-500" />
+              <button onClick={handleSearch} className="absolute right-3 top-2.5 text-gray-500 hover:text-[#DB4444] transition-colors cursor-pointer">
+                <Search className="h-4 w-4" />
+              </button>
             </div>
 
             {/* Icons */}
             <div className="flex items-center space-x-4 relative">
-              <Link href="/wishlist" className="text-gray-900 hover:text-gray-600 relative flex items-center justify-center h-8 w-8">
+              <Link href="/wishlist" className="text-gray-900 hover:text-[#DB4444] hover:scale-110 transition-all duration-300 relative flex items-center justify-center h-8 w-8">
                 <Heart className="h-6 w-6" />
                 {wishlistCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-[#DB4444] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">
+                  <span className="absolute top-0 right-0 bg-[#DB4444] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1 shadow-md animate-fade-in-up">
                     {wishlistCount}
                   </span>
                 )}
               </Link>
-              <Link href="/cart" className="text-gray-900 hover:text-gray-600 relative flex items-center justify-center h-8 w-8">
+              <Link href="/cart" className="text-gray-900 hover:text-[#DB4444] hover:scale-110 transition-all duration-300 relative flex items-center justify-center h-8 w-8">
                 <ShoppingCart className="h-6 w-6" />
                 {cartCount > 0 && (
-                  <span className="absolute top-0 right-0 bg-[#DB4444] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1">
+                  <span className="absolute top-0 right-0 bg-[#DB4444] text-white text-[10px] font-bold h-4 w-4 rounded-full flex items-center justify-center transform translate-x-1 -translate-y-1 shadow-md animate-fade-in-up">
                     {cartCount}
                   </span>
                 )}
@@ -162,7 +181,7 @@ const Navbar = () => {
                 <div className="relative" ref={dropdownRef}>
                   <button 
                     onClick={() => setDropdownOpen(!dropdownOpen)}
-                    className={`flex items-center justify-center h-8 w-8 rounded-full cursor-pointer transition-colors ${dropdownOpen ? 'bg-[#db4444] text-white' : 'text-gray-900 hover:text-gray-600'}`}
+                    className={`flex items-center justify-center h-8 w-8 rounded-full cursor-pointer hover:scale-110 transition-all duration-300 ${dropdownOpen ? 'bg-[#db4444] text-white shadow-lg' : 'text-gray-900 hover:text-[#DB4444]'}`}
                   >
                     <User className="h-6 w-6" />
                   </button>

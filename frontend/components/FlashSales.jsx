@@ -35,7 +35,7 @@ const FlashSales = async () => {
   const products = backendProducts.map(mapProductData); // Fetch all flash sale items for slider
 
   return (
-    <section className="section-width px-4 xl:px-0 py-10 mt-10 border-y border-gray-200">
+    <section className="section-width px-4 xl:px-0 py-4 border-t border-gray-200">
       {/* Section Indicator */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
@@ -46,7 +46,7 @@ const FlashSales = async () => {
 
       {/* View All Button */}
       <div className="flex justify-center mt-12">
-        <Link href="/flash-sales" className="bg-[#DB4444] text-white px-12 py-4 rounded-[4px] font-medium hover:bg-red-600 transition-colors">
+        <Link href="/flash-sales" className="bg-[#DB4444] text-white px-12 py-4 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 font-medium hover:bg-red-600 transition-all duration-300">
           View All Products
         </Link>
       </div>

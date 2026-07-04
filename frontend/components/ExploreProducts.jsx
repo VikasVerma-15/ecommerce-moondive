@@ -34,7 +34,7 @@ const ExploreProducts = async () => {
   const products = backendProducts.map(mapProductData);
 
   return (
-    <section className="section-width px-4 xl:px-0 py-10 mt-10 border-b border-gray-200">
+    <section className="section-width px-4 xl:px-0 py-4 border-t border-gray-200">
       {/* Section Indicator */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>

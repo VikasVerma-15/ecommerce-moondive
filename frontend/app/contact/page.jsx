@@ -57,7 +57,7 @@ export default function ContactPage() {
       <div className="flex flex-col lg:flex-row gap-8">
         
         {/* Left Side: Contact Info */}
-        <div className="w-full lg:w-[30%] bg-white rounded-md shadow-sm border border-gray-50 p-8 flex flex-col gap-8">
+        <div className="w-full lg:w-[30%] bg-white rounded-2xl shadow-lg p-8 flex flex-col gap-8">
           
           {/* Call To Us */}
           <div className="flex flex-col gap-6">
@@ -93,7 +93,7 @@ export default function ContactPage() {
         </div>
 
         {/* Right Side: Contact Form */}
-        <div className="w-full lg:w-[70%] bg-white rounded-md shadow-sm border border-gray-50 p-8">
+        <div className="w-full lg:w-[70%] bg-white rounded-2xl shadow-lg p-8">
           <form onSubmit={handleSubmit} className="flex flex-col gap-8 h-full">
             
             {/* Top Row Inputs */}
@@ -105,7 +105,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 placeholder="Your Name *" 
                 required 
-                className="w-full bg-[#f5f5f5] rounded-sm py-4 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300 text-sm"
+                className="w-full bg-[#f5f5f5] rounded-xl py-4 px-4 focus:outline-none focus:ring-2 focus:ring-[#DB4444] focus:bg-white transition-all duration-300 text-sm"
               />
               <input 
                 type="email" 
@@ -114,7 +114,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 placeholder="Your Email *" 
                 required 
-                className="w-full bg-[#f5f5f5] rounded-sm py-4 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300 text-sm"
+                className="w-full bg-[#f5f5f5] rounded-xl py-4 px-4 focus:outline-none focus:ring-2 focus:ring-[#DB4444] focus:bg-white transition-all duration-300 text-sm"
               />
               <input 
                 type="tel" 
@@ -123,7 +123,7 @@ export default function ContactPage() {
                 onChange={handleChange}
                 placeholder="Your Phone *" 
                 required 
-                className="w-full bg-[#f5f5f5] rounded-sm py-4 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300 text-sm"
+                className="w-full bg-[#f5f5f5] rounded-xl py-4 px-4 focus:outline-none focus:ring-2 focus:ring-[#DB4444] focus:bg-white transition-all duration-300 text-sm"
               />
             </div>
 
@@ -134,7 +134,7 @@ export default function ContactPage() {
               onChange={handleChange}
               placeholder="Your Message" 
               required
-              className="w-full bg-[#f5f5f5] rounded-sm py-4 px-4 focus:outline-none focus:ring-1 focus:ring-gray-300 min-h-[250px] resize-y text-sm flex-grow"
+              className="w-full bg-[#f5f5f5] rounded-xl py-4 px-4 focus:outline-none focus:ring-2 focus:ring-[#DB4444] focus:bg-white transition-all duration-300 min-h-[250px] resize-y text-sm flex-grow"
             ></textarea>
 
             {/* Submit Button */}
@@ -142,7 +142,7 @@ export default function ContactPage() {
               <button 
                 type="submit" 
                 disabled={loading}
-                className="px-12 py-4 bg-[#db4444] text-white font-medium rounded-[4px] hover:bg-red-600 transition-colors disabled:bg-red-400"
+                className="px-12 py-4 bg-[#db4444] text-white font-medium rounded-lg shadow-md hover:shadow-lg hover:bg-red-600 hover:-translate-y-1 transition-all duration-300 disabled:bg-red-400 disabled:shadow-none disabled:transform-none"
               >
                 {loading ? "Sending..." : "Send Message"}
               </button>

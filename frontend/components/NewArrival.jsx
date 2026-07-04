@@ -34,7 +34,7 @@ export default async function NewArrival() {
   }
 
   return (
-    <section className="section-width px-4 xl:px-0 py-10 mt-10">
+    <section className="section-width px-4 xl:px-0 py-4 border-t border-gray-200">
       {/* Section Indicator */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
@@ -51,7 +51,7 @@ export default async function NewArrival() {
         
         {/* Left Block */}
         <div 
-          className="bg-black rounded-[4px] relative h-[400px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
+          className="bg-black rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative h-[400px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
           style={{ backgroundImage: items[0].image ? `url(${items[0].image})` : 'none' }}
         >
           {/* Dark overlay for text readability if there's an image */}
@@ -69,7 +69,7 @@ export default async function NewArrival() {
           
           {/* Top Right Block */}
           <div 
-            className="bg-black rounded-[4px] relative h-[250px] lg:h-[285px] group overflow-hidden flex items-end bg-cover bg-center"
+            className="bg-black rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative h-[250px] lg:h-[285px] group overflow-hidden flex items-end bg-cover bg-center"
             style={{ backgroundImage: items[1].image ? `url(${items[1].image})` : 'none' }}
           >
             {items[1].image && <div className="absolute inset-0 bg-black/30"></div>}
@@ -86,7 +86,7 @@ export default async function NewArrival() {
             
             {/* Bottom Right - Left Block */}
             <div 
-              className="bg-black rounded-[4px] relative h-[250px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
+              className="bg-black rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative h-[250px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
               style={{ backgroundImage: items[2].image ? `url(${items[2].image})` : 'none' }}
             >
               {items[2].image && <div className="absolute inset-0 bg-black/30"></div>}
@@ -100,7 +100,7 @@ export default async function NewArrival() {
 
             {/* Bottom Right - Right Block */}
             <div 
-              className="bg-black rounded-[4px] relative h-[250px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
+              className="bg-black rounded-2xl shadow-md hover:shadow-xl hover:-translate-y-1 transition-all duration-300 relative h-[250px] lg:h-full group overflow-hidden flex items-end bg-cover bg-center"
               style={{ backgroundImage: items[3].image ? `url(${items[3].image})` : 'none' }}
             >
               {items[3].image && <div className="absolute inset-0 bg-black/30"></div>}

@@ -15,20 +15,21 @@ export default function FlashSalesSlider({ products }) {
     let closestEndDate = null;
     const now = new Date().getTime();
 
-    products.forEach(p => {
-      if (p.flashSaleEndDate) {
-        const endDate = new Date(p.flashSaleEndDate).getTime();
-        if (endDate > now) {
-          if (!closestEndDate || endDate < closestEndDate) {
-            closestEndDate = endDate;
-          }
-        }
-      }
-    });
+    // Commenting out product dates to force the 12 day timer
+    // products.forEach(p => {
+    //   if (p.flashSaleEndDate) {
+    //     const endDate = new Date(p.flashSaleEndDate).getTime();
+    //     if (endDate > now) {
+    //       if (!closestEndDate || endDate < closestEndDate) {
+    //         closestEndDate = endDate;
+    //       }
+    //     }
+    //   }
+    // });
 
     if (!closestEndDate) {
-      // If no valid end dates, use a dummy target: 6 days, 23 hours, 19 mins, 56 secs from now
-      closestEndDate = now + (6 * 24 * 60 * 60 * 1000) + (23 * 60 * 60 * 1000) + (19 * 60 * 1000) + (56 * 1000);
+      // If no valid end dates, use a dummy target: 12 days, 23 hours, 19 mins, 56 secs from now
+      closestEndDate = now + (12 * 24 * 60 * 60 * 1000) + (23 * 60 * 60 * 1000) + (19 * 60 * 1000) + (56 * 1000);
     }
 
     const timer = setInterval(() => {

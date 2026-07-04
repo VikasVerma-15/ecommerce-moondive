@@ -8,7 +8,7 @@ const TopHeader = () => {
         <div className="flex items-center gap-[231px] w-[859px] h-[24px]">
           <div className="flex items-center justify-center gap-[8px] w-[550px] h-full">
             <p className="text-center leading-[24px]">Summer Sale For All Swim Suits And Free Express Delivery - OFF 50%!</p>
-            <Link href="/shop" className="font-semibold underline leading-[24px]">
+            <Link href="/shop" className="font-semibold underline leading-[24px] hover:text-[#DB4444] transition-colors">
               ShopNow
             </Link>
           </div>

@@ -93,7 +93,7 @@ export default function CartPage() {
 
   return (
     <main className="flex-grow flex flex-col bg-white">
-      <div className="section-width px-4 xl:px-0 py-10">
+      <div className="section-width px-4 xl:px-0 py-6">
         
         {/* Breadcrumb */}
         <div className="flex gap-2 text-sm mb-12">
@@ -112,7 +112,7 @@ export default function CartPage() {
         ) : (
           <div className="flex flex-col gap-10">
             {/* Cart Table Headers */}
-            <div className="grid grid-cols-4 bg-white shadow-sm border border-gray-100 rounded-[4px] py-6 px-10">
+            <div className="grid grid-cols-4 bg-white shadow-md rounded-2xl py-6 px-10">
               <div className="font-medium text-black">Product</div>
               <div className="font-medium text-black">Price</div>
               <div className="font-medium text-black">Quantity</div>
@@ -128,7 +128,7 @@ export default function CartPage() {
                 const image = product.images && product.images.length > 0 ? product.images[0] : "";
 
                 return (
-                  <div key={product._id} className="grid grid-cols-4 items-center bg-white shadow-sm border border-gray-100 rounded-[4px] py-6 px-10 relative">
+                  <div key={product._id} className="grid grid-cols-4 items-center bg-white shadow-sm hover:shadow-md transition-shadow duration-300 rounded-2xl py-6 px-10 relative">
                     
                     {/* Product */}
                     <div className="flex items-center gap-4 relative">
@@ -155,7 +155,7 @@ export default function CartPage() {
 
                     {/* Quantity */}
                     <div>
-                      <div className="flex items-center justify-between w-20 border border-gray-300 rounded-[4px] px-3 py-1.5">
+                      <div className="flex items-center justify-between w-20 border border-gray-200 bg-gray-50 rounded-lg px-3 py-1.5">
                         <span className="text-black">{String(item.quantity).padStart(2, '0')}</span>
                         <div className="flex flex-col">
                           <button onClick={() => handleUpdateQuantity(product._id, item.quantity, 1)} className="hover:text-gray-600">
@@ -179,34 +179,35 @@ export default function CartPage() {
             </div>
 
             {/* Cart Actions */}
-            <div className="flex justify-between mt-4">
-              <Link href="/" className="px-10 py-4 border border-gray-400 text-black font-medium rounded-[4px] hover:bg-gray-50 transition-colors">
+            <div className="flex justify-start mt-4">
+              <Link href="/" className="px-10 py-4 bg-gray-50 text-black font-medium rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
                 Return To Shop
               </Link>
-              <button onClick={() => fetchCart()} className="px-10 py-4 border border-gray-400 text-black font-medium rounded-[4px] hover:bg-gray-50 transition-colors">
-                Update Cart
-              </button>
             </div>
 
             {/* Cart Total Section */}
-            <div className="flex justify-end mt-12 mb-20">
-              <div className="w-full md:w-[470px] border border-black rounded-[4px] px-6 py-8">
+            <div className="flex justify-end mt-8 mb-10">
+              <div className="w-full md:w-[470px] bg-white rounded-2xl shadow-xl px-8 py-8 border border-gray-100 flex flex-col">
                 <h3 className="text-xl font-medium text-black mb-6">Cart Total</h3>
                 
                 <div className="flex justify-between border-b border-gray-200 pb-4 mb-4">
                   <span className="text-black">Subtotal:</span>
-                  <span className="text-black">${subtotal}</span>
+                  <span className="text-black font-medium">${subtotal}</span>
                 </div>
                 
                 <div className="flex justify-between border-b border-gray-200 pb-4 mb-4">
                   <span className="text-black">Shipping:</span>
-                  <span className="text-black">Free</span>
+                  <span className="text-black font-medium">Free</span>
                 </div>
                 
-                <div className="flex justify-between pb-4">
+                <div className="flex justify-between pb-6 mb-6">
                   <span className="text-black">Total:</span>
-                  <span className="text-black">${subtotal}</span>
+                  <span className="text-black font-medium text-lg">${subtotal}</span>
                 </div>
+                
+                <Link href="/checkout" className="w-full bg-[#db4444] text-white text-center py-4 rounded-lg font-medium shadow-md hover:shadow-lg hover:-translate-y-1 hover:bg-red-600 transition-all duration-300">
+                  Proceed to Checkout
+                </Link>
               </div>
             </div>
 

@@ -48,15 +48,15 @@ export default async function ProductsPage(props) {
         
         {/* Breadcrumb / Back Link */}
         <div className="mb-8 flex items-center">
-          <Link href="/" className="flex items-center text-gray-500 hover:text-black transition-colors gap-2">
-            <ArrowLeft size={20} />
+          <Link href="/" className="flex items-center text-gray-500 hover:text-[#DB4444] transition-colors gap-2 group">
+            <ArrowLeft size={20} className="group-hover:-translate-x-1 transition-transform" />
             <span className="font-medium">Back to Home</span>
           </Link>
         </div>
 
         {/* Header */}
-        <div className="flex items-center gap-4 mb-6">
-          <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
+        <div className="flex items-center gap-4 mb-10">
+          <div className="w-5 h-10 bg-[#DB4444] rounded-md shadow-sm"></div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black capitalize">
             {category ? `${category} Products` : 'All Products'}
           </h1>

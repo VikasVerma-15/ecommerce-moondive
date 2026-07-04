@@ -10,6 +10,13 @@ export function getApiBaseUrl() {
   if (process.env.NODE_ENV === 'development') {
     return 'http://localhost:3001/api/v1';
   }
+  // Server-side on Vercel needs an absolute URL (relative /backend fails in Node fetch)
+  const siteUrl =
+    process.env.NEXTAUTH_URL ||
+    (process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : null);
+  if (siteUrl) {
+    return `${siteUrl.replace(/\/$/, '')}/backend`;
+  }
   return '/backend';
 }
 

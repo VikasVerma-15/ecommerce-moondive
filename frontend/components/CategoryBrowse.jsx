@@ -14,7 +14,7 @@ export default function CategoryBrowse() {
   ];
 
   return (
-    <div className="section-width px-4 xl:px-0 py-10 mt-10 border-b border-gray-200 ">
+    <div className="section-width px-4 xl:px-0 py-4 border-t border-gray-200">
       {/* Section Indicator */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
@@ -34,13 +34,13 @@ export default function CategoryBrowse() {
             <Link 
               key={idx} 
               href={`/products?category=${category.slug}`}
-              className="group flex flex-col items-center justify-center h-[145px] border border-gray-300 rounded-[4px] cursor-pointer hover:bg-[#DB4444] hover:border-[#DB4444] transition-all duration-300"
+              className="group flex flex-col items-center justify-center h-[145px] border border-gray-200 bg-white rounded-xl cursor-pointer hover:bg-[#DB4444] hover:border-[#DB4444] hover:shadow-xl hover:-translate-y-2 transition-all duration-300"
             >
               <Icon 
                 size={40} 
-                className="text-black group-hover:text-white mb-4 stroke-1 transition-colors duration-300" 
+                className="text-gray-700 group-hover:text-white mb-4 stroke-1 transition-colors duration-300 group-hover:scale-110" 
               />
-              <span className="text-black group-hover:text-white font-medium transition-colors duration-300 text-sm sm:text-base">
+              <span className="text-gray-900 group-hover:text-white font-medium transition-colors duration-300 text-sm sm:text-base">
                 {category.name}
               </span>
             </Link>

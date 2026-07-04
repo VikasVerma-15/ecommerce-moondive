@@ -38,67 +38,73 @@ export default function SignUpPage() {
 
   return (
     <main className="section-width flex justify-start lg:justify-center overflow-x-hidden">
-      <div className="flex flex-col lg:flex-row items-center justify-between gap-12 xl:gap-[64px] w-full max-w-[1305px] h-auto xl:pt-10 xl:pb-20">
+      <div className="flex flex-col lg:flex-row items-center justify-center gap-8 xl:gap-10 w-full max-w-[1305px] h-auto xl:pt-10 xl:pb-20">
         {/* Left Side: Hero Image */}
-        <div className="hidden lg:flex relative lg:w-[79%] xl:w-[805px] h-[430px] xl:h-[620px] bg-[#cbe4e8] rounded-r-[4px] overflow-hidden">
+        <div className="hidden lg:flex relative h-[430px] xl:h-[620px] aspect-[805/781] rounded-2xl overflow-hidden">
           <Image
             src="/images/signup-side-image.svg"
             alt="Sign Up Shopping Graphic"
             width={805}
             height={781}
-            className="h-full w-full object-cover object-bottom"
+            className="h-full w-full object-cover animate-fade-in-up"
             priority
           />
         </div>
 
         {/* Right Side: Sign Up Form */}
-        <div className="w-full px-4 lg:px-0 lg:w-[41%] xl:w-[371px] xl:h-[530px] flex flex-col gap-[48px] mx-auto xl:mx-0">
+        <div className="w-full px-4 lg:px-0 lg:w-[40%] xl:w-[371px] xl:h-auto flex flex-col gap-6 mx-auto xl:mx-0 py-8">
           {/* Headings */}
-          <div>
-            <h1 className="text-4xl font-medium tracking-wide mb-6">
+          <div className="animate-fade-in-up" style={{ animationDelay: '0.1s' }}>
+            <h1 className="text-4xl font-bold tracking-tight mb-2 text-gray-900">
               Create an account
             </h1>
-            <p className="text-gray-900">Enter your details below</p>
+            <p className="text-gray-600 text-base">Enter your details below to get started</p>
           </div>
 
           {/* Form Fields */}
-          <form onSubmit={handleSignup} className="flex flex-col gap-10 w-full">
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={handleChange}
-              placeholder="Name"
-              required
-              className="w-full border-b border-gray-400 pb-2 focus:outline-none focus:border-gray-800 bg-transparent text-gray-800 placeholder-gray-500"
-            />
-            <input
-              type="text"
-              name="email"
-              value={formData.email}
-              onChange={handleChange}
-              placeholder="Email or Phone Number"
-              required
-              className="w-full border-b border-gray-400 pb-2 focus:outline-none focus:border-gray-800 bg-transparent text-gray-800 placeholder-gray-500"
-            />
-            <input
-              type="password"
-              name="password"
-              value={formData.password}
-              onChange={handleChange}
-              placeholder="Password"
-              required
-              className="w-full border-b border-gray-400 pb-2 focus:outline-none focus:border-gray-800 bg-transparent text-gray-800 placeholder-gray-500"
-            />
+          <form onSubmit={handleSignup} className="flex flex-col gap-4 w-full animate-fade-in-up" style={{ animationDelay: '0.2s' }}>
+            <div className="relative">
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={handleChange}
+                placeholder="Name"
+                required
+                className="w-full border-b-2 border-gray-200 pb-3 focus:outline-none focus:border-[#DB4444] bg-transparent text-gray-900 placeholder-gray-400 transition-colors"
+              />
+            </div>
+            <div className="relative">
+              <input
+                type="text"
+                name="email"
+                value={formData.email}
+                onChange={handleChange}
+                placeholder="Email or Phone Number"
+                required
+                className="w-full border-b-2 border-gray-200 pb-3 focus:outline-none focus:border-[#DB4444] bg-transparent text-gray-900 placeholder-gray-400 transition-colors"
+              />
+            </div>
+            <div className="relative">
+              <input
+                type="password"
+                name="password"
+                value={formData.password}
+                onChange={handleChange}
+                placeholder="Password"
+                required
+                className="w-full border-b-2 border-gray-200 pb-3 focus:outline-none focus:border-[#DB4444] bg-transparent text-gray-900 placeholder-gray-400 transition-colors"
+              />
+            </div>
 
-            {error && <p className="text-red-500 text-sm mt-[-20px]">{error}</p>}
+            {error && <p className="text-red-500 text-sm mt-[-10px] animate-fade-in-up">{error}</p>}
 
             {/* Buttons & Footer Container */}
-            <div className="flex flex-col gap-4 w-full">
+            <div className="flex flex-col gap-3 w-full mt-2">
               <button 
                 type="submit" 
                 disabled={loading}
-                className="w-full h-14 bg-[#db4444] text-white font-medium rounded-[4px] hover:bg-red-600 transition-colors disabled:bg-red-400"
+                className="w-full h-14 bg-[#db4444] text-white font-medium rounded-lg hover:bg-red-600 hover:shadow-lg hover:-translate-y-1 transition-all duration-300 disabled:bg-red-400 disabled:transform-none disabled:shadow-none"
               >
                 {loading ? "Creating..." : "Create Account"}
               </button>
@@ -106,21 +112,22 @@ export default function SignUpPage() {
               <button 
                 type="button"
                 onClick={() => signIn("google", { callbackUrl: "/" })}
-                className="w-full h-14 border border-gray-400 text-gray-900 font-medium rounded-[4px] flex items-center justify-center gap-2 hover:bg-gray-50 transition-colors"
+                className="w-full h-14 border-2 border-gray-200 text-gray-800 font-medium rounded-lg flex items-center justify-center gap-3 hover:bg-gray-50 hover:border-gray-300 transition-all duration-300 group"
               >
                 <Image
                   src="/images/google-icon.svg"
                   alt="Google Logo"
                   width={24}
                   height={24}
+                  className="group-hover:scale-110 transition-transform duration-300"
                 />
                 Sign up with Google
               </button>
               
               {/* Footer */}
-              <div className="flex items-center justify-center gap-4 mt-4 text-gray-600">
-                <p>Already have account?</p>
-                <Link href="/login" className="text-gray-900 font-medium underline underline-offset-4 decoration-1 hover:text-gray-600">
+              <div className="flex items-center justify-center gap-2 mt-4 text-gray-600">
+                <p>Already have an account?</p>
+                <Link href="/login" className="text-[#DB4444] font-medium hover:underline underline-offset-4 decoration-2 transition-all">
                   Log in
                 </Link>
               </div>

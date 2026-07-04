@@ -144,13 +144,13 @@ export default function AboutPage() {
           </div>
         </div>
 
-        <div className="relative overflow-hidden bg-[#eb7ea8] rounded-md">
+        <div className="relative overflow-hidden rounded-2xl shadow-xl flex items-center justify-center">
           <Image
             src="/images/about-side-image.svg"
             alt="Two shoppers holding bags"
             width={705}
             height={609}
-            className="h-auto w-full"
+            className="h-auto w-full rounded-2xl"
             priority
           />
         </div>
@@ -163,7 +163,7 @@ export default function AboutPage() {
           return (
             <div
               key={item.label}
-              className="group flex min-h-[170px] flex-col items-center justify-center rounded-[4px] border border-gray-300 bg-white text-black text-center transition-colors hover:border-[#db4444] hover:bg-[#db4444] hover:text-white hover:shadow-md cursor-pointer"
+              className="group flex min-h-[170px] flex-col items-center justify-center rounded-xl border border-gray-100 bg-white text-black text-center transition-all duration-300 hover:border-[#db4444] hover:bg-[#db4444] hover:text-white shadow-sm hover:shadow-xl hover:-translate-y-1 cursor-pointer"
             >
               <span
                 className="mb-5 flex h-16 w-16 items-center justify-center rounded-full bg-gray-300 transition-colors group-hover:bg-white/30"
@@ -191,14 +191,14 @@ export default function AboutPage() {
           >
             {team.map((member, index) => (
               <div key={index} className="w-full flex-shrink-0 px-4 md:w-1/3">
-                <article>
-                  <div className="mb-6 overflow-hidden bg-[#f5f5f5]">
+                <article className="group cursor-pointer">
+                  <div className="mb-6 overflow-hidden bg-[#f5f5f5] rounded-2xl shadow-sm group-hover:shadow-lg transition-all duration-300">
                     <Image
                       src={member.image}
                       alt={member.name}
                       width={370}
                       height={430}
-                      className="h-auto w-full"
+                      className="h-auto w-full group-hover:scale-105 transition-transform duration-500"
                     />
                   </div>
                   <h2 className="text-2xl font-medium">{member.name}</h2>
@@ -233,9 +233,9 @@ export default function AboutPage() {
           const Icon = service.icon;
 
           return (
-            <div key={service.title} className="flex flex-col items-center">
-              <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-300">
-                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-white">
+            <div key={service.title} className="flex flex-col items-center group cursor-pointer hover:-translate-y-1 transition-transform duration-300">
+              <span className="mb-6 flex h-16 w-16 items-center justify-center rounded-full bg-gray-300 group-hover:bg-[#db4444]/20 transition-colors duration-300">
+                <span className="flex h-11 w-11 items-center justify-center rounded-full bg-black text-white group-hover:bg-[#db4444] group-hover:scale-110 shadow-md transition-all duration-300">
                   <Icon className="h-6 w-6" />
                 </span>
               </span>

@@ -35,7 +35,7 @@ const BestSelling = async () => {
   const products = backendProducts.map(mapProductData).slice(0, 4); // Show up to 4 items on home page
 
   return (
-    <section className="section-width px-4 xl:px-0 py-10 mt-10 border-b border-gray-200">
+    <section className="section-width px-4 xl:px-0 py-4 border-t border-gray-200">
       {/* Section Indicator */}
       <div className="flex items-center gap-4 mb-6">
         <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
@@ -48,7 +48,7 @@ const BestSelling = async () => {
         
         <Link 
           href="/best-selling" 
-          className="bg-[#DB4444] text-white px-10 py-3.5 rounded-[4px] font-medium hover:bg-red-600 transition-colors w-max"
+          className="bg-[#DB4444] text-white px-10 py-3.5 rounded-lg shadow-md hover:shadow-lg hover:-translate-y-1 font-medium hover:bg-red-600 transition-all duration-300 w-max"
         >
           View All
         </Link>

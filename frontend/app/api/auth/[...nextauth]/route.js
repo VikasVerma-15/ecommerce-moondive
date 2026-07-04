@@ -3,6 +3,7 @@ import GoogleProvider from "next-auth/providers/google";
 import { getApiUrl } from "@/lib/apiUrl";
 
 export const authOptions = {
+  secret: process.env.NEXTAUTH_SECRET,
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID,
@@ -34,6 +35,7 @@ export const authOptions = {
             user.isAdmin = data.data.user.isAdmin;
             return true;
           }
+          console.error("Google sign-in backend rejected:", res.status, data);
           return false;
         } catch (error) {
           console.error("Error connecting to backend during Google login:", error);

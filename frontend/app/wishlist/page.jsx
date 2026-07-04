@@ -2,12 +2,14 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { Trash2, ShoppingCart, Eye } from "lucide-react";
 import api from "@/lib/api";
 import { toast } from "react-hot-toast";
 
 export default function WishlistPage() {
+  const router = useRouter();
   const [wishlistItems, setWishlistItems] = useState([]);
   const [justForYou, setJustForYou] = useState([]);
   const [loading, setLoading] = useState(true);
@@ -102,7 +104,7 @@ export default function WishlistPage() {
 
   return (
     <main className="flex-grow flex flex-col bg-white">
-      <div className="section-width px-4 xl:px-0 py-10 mt-10">
+      <div className="section-width px-4 xl:px-0 py-6 mt-4 mb-10">
         
         {/* Top Header Section */}
         <div className="flex items-center justify-between mb-10">
@@ -110,43 +112,52 @@ export default function WishlistPage() {
           <button 
             onClick={handleMoveAllToBag}
             disabled={movingToBag || wishlistItems.length === 0}
-            className="px-8 py-3 border border-gray-400 text-black font-medium rounded-[4px] hover:bg-gray-50 transition-colors disabled:opacity-50"
+            className="px-8 py-3 bg-gray-50 border border-gray-200 text-black font-medium rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300 disabled:opacity-50 disabled:shadow-none disabled:transform-none"
           >
             {movingToBag ? "Moving..." : "Move All To Bag"}
           </button>
         </div>
 
-        {/* Wishlist Grid */}
         {wishlistItems.length === 0 ? (
           <div className="text-center py-10 text-gray-500">Your wishlist is empty.</div>
         ) : (
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
             {wishlistItems.map((product) => {
               const price = product.discountPrice > 0 ? product.discountPrice : product.price;
               const originalPrice = product.price;
               const image = product.images && product.images.length > 0 ? product.images[0] : "";
 
               return (
-                <div key={product._id} className="flex flex-col group cursor-pointer">
+                <div key={product._id} className="flex flex-col group cursor-pointer bg-white rounded-xl hover:shadow-xl hover:-translate-y-2 transition-all duration-300 pb-3">
                   {/* Image Container */}
-                  <div className="relative bg-[#F5F5F5] rounded-md h-[250px] w-full flex items-center justify-center overflow-hidden">
+                  <div className="relative bg-[#F5F5F5] rounded-t-xl h-[250px] w-full flex items-center justify-center overflow-hidden">
                     {product.discount > 0 && (
                       <div className="absolute top-3 left-3 bg-[#DB4444] text-white text-xs px-3 py-1 rounded">
                         -{product.discount}%
                       </div>
                     )}
                     
-                    {/* Remove Action */}
-                    <div className="absolute top-3 right-3 z-10">
+                    {/* Actions (Remove & View) */}
+                    <div className="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                       <button 
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
                           handleRemoveFromWishlist(product._id);
                         }} 
-                        className="bg-white rounded-full p-2 shadow-sm hover:bg-gray-100 transition-colors text-black relative z-20"
+                        className="bg-white rounded-full p-2 shadow-md hover:scale-110 hover:text-[#DB4444] transition-all duration-300 text-black relative z-20"
                       >
                         <Trash2 size={20} />
+                      </button>
+                      <button 
+                        onClick={(e) => {
+                          e.preventDefault();
+                          e.stopPropagation();
+                          router.push(`/products/${product._id}`);
+                        }} 
+                        className="bg-white rounded-full p-2 shadow-md hover:scale-110 hover:text-[#DB4444] transition-all duration-300 text-black relative z-20"
+                      >
+                        <Eye size={20} />
                       </button>
                     </div>
 
@@ -166,7 +177,7 @@ export default function WishlistPage() {
                         e.stopPropagation();
                         handleAddToCart(product._id);
                       }}
-                      className="absolute bottom-0 w-full bg-black text-white text-center py-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 z-10"
+                      className="absolute bottom-0 left-0 w-full bg-black hover:bg-[#DB4444] text-white text-center py-3 text-sm font-medium translate-y-full group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
                     >
                       <ShoppingCart size={16} />
                       Add To Cart
@@ -190,27 +201,27 @@ export default function WishlistPage() {
         )}
 
         {/* Just For You Section */}
-        <div className="mt-20">
+        <div className="mt-10">
           <div className="flex items-center justify-between mb-10">
             <div className="flex items-center gap-4">
               <div className="w-5 h-10 bg-[#DB4444] rounded-md"></div>
               <h2 className="text-[#DB4444] text-xl font-medium">Just For You</h2>
             </div>
-            <Link href="/products" className="px-8 py-3 border border-gray-400 text-black font-medium rounded-[4px] hover:bg-gray-50 transition-colors">
+            <Link href="/products" className="px-8 py-3 bg-gray-50 border border-gray-200 text-black font-medium rounded-lg shadow-sm hover:shadow-md hover:-translate-y-1 transition-all duration-300">
               See All
             </Link>
           </div>
 
-          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-20">
+          <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6 mb-10">
             {justForYou.map((product) => {
               const price = product.discountPrice > 0 ? product.discountPrice : product.price;
               const originalPrice = product.price;
               const image = product.images && product.images.length > 0 ? product.images[0] : "";
 
               return (
-                <div key={product._id} className="flex flex-col group cursor-pointer">
+                <div key={product._id} className="flex flex-col group cursor-pointer bg-white rounded-xl hover:shadow-xl hover:-translate-y-2 transition-all duration-300 pb-3">
                   {/* Image Container */}
-                  <div className="relative bg-[#F5F5F5] rounded-md h-[250px] w-full flex items-center justify-center overflow-hidden">
+                  <div className="relative bg-[#F5F5F5] rounded-t-xl h-[250px] w-full flex items-center justify-center overflow-hidden">
                     {product.discount > 0 && (
                       <div className="absolute top-3 left-3 bg-[#DB4444] text-white text-xs px-3 py-1 rounded">
                         -{product.discount}%
@@ -222,14 +233,15 @@ export default function WishlistPage() {
                       </div>
                     )}
                     
-                    {/* View Action */}
-                    <div className="absolute top-3 right-3 z-10">
+                    {/* Actions (View) */}
+                    <div className="absolute top-3 right-3 flex flex-col gap-2 z-10 opacity-0 group-hover:opacity-100 translate-x-4 group-hover:translate-x-0 transition-all duration-300">
                       <button 
                         onClick={(e) => {
                           e.preventDefault();
                           e.stopPropagation();
+                          router.push(`/products/${product._id}`);
                         }}
-                        className="bg-white rounded-full p-2 shadow-sm hover:bg-gray-100 transition-colors text-black relative z-20"
+                        className="bg-white rounded-full p-2 shadow-md hover:scale-110 hover:text-[#DB4444] transition-all duration-300 text-black relative z-20"
                       >
                         <Eye size={20} />
                       </button>
@@ -251,7 +263,7 @@ export default function WishlistPage() {
                         e.stopPropagation();
                         handleAddToCart(product._id);
                       }}
-                      className="absolute bottom-0 w-full bg-black text-white text-center py-2 text-sm font-medium opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-2 z-10"
+                      className="absolute bottom-0 left-0 w-full bg-black hover:bg-[#DB4444] text-white text-center py-3 text-sm font-medium translate-y-full group-hover:translate-y-0 transition-all duration-300 flex items-center justify-center gap-2 z-10 shadow-[0_-4px_6px_-1px_rgba(0,0,0,0.1)]"
                     >
                       <ShoppingCart size={16} />
                       Add To Cart
