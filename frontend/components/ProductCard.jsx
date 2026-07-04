@@ -57,10 +57,10 @@ const ProductCard = ({ product }) => {
   return (
     <div 
       onClick={() => router.push(`/products/${product.id || product._id}`)}
-      className="flex flex-col group cursor-pointer hover:-translate-y-2 hover:shadow-xl transition-all duration-300 bg-white rounded-xl overflow-hidden pb-3"
+      className="flex flex-col group cursor-pointer hover:-translate-y-2 hover:shadow-[0_20px_40px_-15px_rgba(0,0,0,0.1)] transition-all duration-500 bg-white rounded-2xl overflow-hidden pb-3 border border-gray-100"
     >
       {/* Image Container with gray background */}
-      <div className="relative bg-[#F5F5F5] rounded-t-xl h-[250px] w-full flex items-center justify-center overflow-hidden">
+      <div className="relative bg-[#F5F5F5] rounded-t-2xl h-[250px] w-full flex items-center justify-center overflow-hidden">
         
         {/* Discount Badge */}
         {product.discount && (

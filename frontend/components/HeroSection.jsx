@@ -63,7 +63,7 @@ export default function HeroSection() {
                       <path d="M318.7 268.7c-.2-36.7 16.4-64.4 50-84.8-18.8-26.9-47.2-41.7-84.7-44.6-35.5-2.8-74.3 20.7-88.5 20.7-15 0-49.4-19.7-76.4-19.7C63.3 141.2 24 184.8 8 273.6 1.5 310 13.5 385 41.6 426.6c18.3 27.2 40.5 55 71.5 54.3 29.5-.7 40.9-19 75.9-19 35 0 44.9 19.1 76.4 18.9 32.5-.2 50.8-24.8 69.1-52.6 22.8-34.8 32-69.5 32.5-71.3-.6-.3-48.1-18.2-48.3-88.2zM241.4 83.6c14.6-18 24.5-43 21.9-67.6-21.7 1-47.3 15-62.5 32.8-13.4 15.6-24.6 41.2-21.4 65.3 24.2 1.9 47.4-12.7 62-30.5z" />
                     </svg>
                     <span className="text-white text-base md:text-lg font-medium tracking-wide">
-                      iPhone 14 Series
+                      iPhone 15 Series
                     </span>
                   </div>
                   
@@ -72,7 +72,7 @@ export default function HeroSection() {
                   </h1>
                   
                   <Link 
-                    href="/products?category=phone" 
+                    href="/products?category=phones&search=iphone%2015" 
                     className="flex items-center gap-2 text-white font-medium hover:text-[#DB4444] transition-all duration-300 border-b border-transparent hover:border-[#DB4444] w-max pb-1 group/btn animate-fade-in-up" style={{ animationDelay: '0.3s' }}
                   >
                     Shop Now <ArrowRight size={20} className="group-hover/btn:translate-x-2 transition-transform duration-300" />
@@ -82,7 +82,7 @@ export default function HeroSection() {
                 <div className="absolute right-0 bottom-0 md:static w-full md:w-1/2 flex items-end justify-end h-full">
                   <img 
                     src="/images/hero_endframe__cvklg0xk3w6e_large 2 (1).png" 
-                    alt="iPhone 14 Series" 
+                    alt="iPhone 15 Series" 
                     className="object-contain max-h-[90%] lg:max-h-[100%] w-auto self-end opacity-70 md:opacity-100 mt-10 md:mt-0"
                   />
                 </div>

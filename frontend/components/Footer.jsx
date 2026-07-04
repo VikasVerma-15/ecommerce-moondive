@@ -11,7 +11,7 @@ const accountLinks = [
 
 const Footer = () => {
   return (
-    <footer className="mt-auto bg-gradient-to-b from-gray-900 to-black text-white relative overflow-hidden">
+    <footer className="mt-auto bg-gradient-to-br from-gray-900 via-black to-[#1a0808] text-white relative overflow-hidden">
       {/* Decorative blurred background element */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-[#DB4444]/10 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3"></div>
       
@@ -21,7 +21,7 @@ const Footer = () => {
           <div className="space-y-4">
             <h3 className="text-lg font-medium text-gray-200">Subscribe</h3>
             <p className="text-sm text-gray-400">Get 10% off your first order</p>
-            <div className="flex h-12 max-w-[220px] items-center rounded-md border border-gray-700 bg-white/5 backdrop-blur-sm px-4 focus-within:border-[#DB4444] transition-colors">
+            <div className="flex h-12 max-w-[220px] items-center rounded-lg border border-gray-700 bg-white/5 backdrop-blur-md px-4 focus-within:border-[#DB4444] focus-within:ring-1 focus-within:ring-[#DB4444] transition-all duration-300 hover:bg-white/10 shadow-inner">
               <span className="text-sm text-gray-400">Enter your email</span>
             </div>
           </div>

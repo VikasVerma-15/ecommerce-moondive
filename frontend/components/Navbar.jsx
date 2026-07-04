@@ -80,7 +80,7 @@ const Navbar = () => {
 
   const handleSearch = () => {
     if (searchQuery.trim()) {
-      router.push(`/products?category=${encodeURIComponent(searchQuery.trim().toLowerCase())}`);
+      router.push(`/products?search=${encodeURIComponent(searchQuery.trim().toLowerCase())}`);
     }
   };
 
@@ -114,7 +114,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="w-full border-b border-gray-200/50 sticky top-0 z-50 glass transition-all duration-300">
+    <div className="w-full border-b border-gray-200/50 sticky top-0 z-50 glass shadow-sm transition-all duration-300">
       <div className="section-width px-4 xl:px-0 py-[16px]">
         <div className="flex items-center justify-between h-[38px] lg:gap-[148px]">
           
@@ -158,7 +158,7 @@ const Navbar = () => {
                 onChange={(e) => setSearchQuery(e.target.value)}
                 onKeyDown={handleKeyDown}
                 placeholder="What are you looking for?"
-                className="w-48 lg:w-64 bg-[#f5f5f5] rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#DB4444]/50 transition-all duration-300"
+                className="w-48 lg:w-64 bg-[#f5f5f5] hover:bg-gray-100 rounded-full py-2 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#DB4444]/50 focus:bg-white shadow-inner transition-all duration-300"
               />
               <button onClick={handleSearch} className="absolute right-3 top-2.5 text-gray-500 hover:text-[#DB4444] transition-colors cursor-pointer">
                 <Search className="h-4 w-4" />

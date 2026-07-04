@@ -37,11 +37,14 @@ export const createProduct = asyncHandler(async (req, res) => {
 
 export const getAllProducts = asyncHandler(async (req, res) => {
  
-    const { isFlashSale, isBestSeller, isNewArrival, category } = req.query;
+    const { isFlashSale, isBestSeller, isNewArrival, category, search } = req.query;
     const query = {};
     if (isFlashSale) query.isFlashSale = isFlashSale === 'true';
     if (isBestSeller) query.isBestSeller = isBestSeller === 'true';
     if (isNewArrival) query.isNewArrival = isNewArrival === 'true';
+    if (search) {
+        query.title = { $regex: new RegExp(search, "i") };
+    }
     if (category) {
         const categoryDoc = await Category.findOne({
             $or: [

@@ -3,11 +3,13 @@ import Link from 'next/link';
 import { ArrowLeft } from 'lucide-react';
 import { getApiUrl } from '@/lib/apiUrl';
 
-const getProducts = async (category) => {
+const getProducts = async (category, search) => {
   try {
-    const url = category
-      ? getApiUrl(`products?category=${category}`)
-      : getApiUrl('products');
+    const params = new URLSearchParams();
+    if (category) params.append('category', category);
+    if (search) params.append('search', search);
+    
+    const url = getApiUrl(`products?${params.toString()}`);
     const res = await fetch(url, { cache: 'no-store' });
     const json = await res.json();
     return json.data || [];
@@ -38,8 +40,9 @@ const mapProductData = (p) => {
 export default async function ProductsPage(props) {
   const searchParams = await props.searchParams;
   const category = searchParams?.category || '';
+  const search = searchParams?.search || '';
   
-  const backendProducts = await getProducts(category);
+  const backendProducts = await getProducts(category, search);
   const products = backendProducts.map(mapProductData);
 
   return (
@@ -58,7 +61,7 @@ export default async function ProductsPage(props) {
         <div className="flex items-center gap-4 mb-10">
           <div className="w-5 h-10 bg-[#DB4444] rounded-md shadow-sm"></div>
           <h1 className="text-3xl md:text-4xl font-bold tracking-tight text-black capitalize">
-            {category ? `${category} Products` : 'All Products'}
+            {search ? `Search Results for "${search}"` : (category ? `${category} Products` : 'All Products')}
           </h1>
         </div>
 
