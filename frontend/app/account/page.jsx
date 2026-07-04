@@ -126,34 +126,29 @@ export default function AccountPage() {
         </div>
       </div>
 
-      <div className="flex flex-col lg:flex-row gap-[100px]">
+      <div className="flex flex-col lg:flex-row gap-12 lg:gap-24">
         {/* Sidebar */}
         <aside className="w-full lg:w-[250px] flex-shrink-0">
-          <div className="mb-6">
-            <h3 className="font-medium text-lg mb-4">Manage My Account</h3>
-            <ul className="flex flex-col gap-2 pl-6 text-gray-500">
-              <li className="text-[#db4444] font-medium">My Profile</li>
-              {/* Address Book removed as requested */}
-              <li className="hover:text-gray-900 cursor-pointer transition-colors">My Payment Options</li>
-            </ul>
-          </div>
-          
-          <div className="mb-6">
-            <h3 className="font-medium text-lg mb-4">My Orders</h3>
-            <ul className="flex flex-col gap-2 pl-6 text-gray-500">
-              <li className="hover:text-gray-900 cursor-pointer transition-colors">My Returns</li>
-              <li className="hover:text-gray-900 cursor-pointer transition-colors">My Cancellations</li>
+          <div className="mb-8 bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <h3 className="font-semibold text-xl mb-4 text-gray-900">Manage My Account</h3>
+            <ul className="flex flex-col gap-3 pl-2 text-gray-500">
+              <li className="text-[#db4444] font-medium flex items-center gap-2">
+                <span className="w-1.5 h-1.5 rounded-full bg-[#db4444]"></span>
+                My Profile
+              </li>
             </ul>
           </div>
 
-          <div>
-            <h3 className="font-medium text-lg mb-4">My WishList</h3>
+          <div className="bg-white p-6 rounded-2xl shadow-sm border border-gray-100">
+            <Link href="/wishlist">
+              <h3 className="font-semibold text-xl text-gray-900 hover:text-[#db4444] transition-colors cursor-pointer">My WishList</h3>
+            </Link>
           </div>
         </aside>
 
         {/* Main Content */}
-        <div className="flex-grow bg-white shadow-[0_4px_20px_rgba(0,0,0,0.05)] rounded-[4px] px-[40px] py-[40px] lg:px-[80px]">
-          <h2 className="text-2xl font-medium text-[#db4444] mb-8">Edit Your Profile</h2>
+        <div className="flex-grow bg-white shadow-lg shadow-gray-200/50 rounded-2xl border border-gray-100 px-8 py-10 lg:px-12 lg:py-12">
+          <h2 className="text-3xl font-semibold text-gray-900 mb-8 border-b border-gray-100 pb-4">Edit Your Profile</h2>
           
           <form onSubmit={handleSubmit} className="flex flex-col gap-6">
             {message.text && (
@@ -165,47 +160,47 @@ export default function AccountPage() {
             {/* Profile Fields */}
             <div className="flex flex-col md:flex-row gap-8">
               <div className="flex-1 flex flex-col gap-2">
-                <label className="text-sm">First Name</label>
+                <label className="text-sm font-medium text-gray-700">First Name</label>
                 <input 
                   type="text" 
                   name="firstName"
                   value={formData.firstName}
                   onChange={handleChange}
                   required
-                  className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 text-gray-900"
                 />
               </div>
               <div className="flex-1 flex flex-col gap-2">
-                <label className="text-sm">Last Name</label>
+                <label className="text-sm font-medium text-gray-700">Last Name</label>
                 <input 
                   type="text" 
                   name="lastName"
                   value={formData.lastName}
                   onChange={handleChange}
                   required
-                  className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 text-gray-900"
                 />
               </div>
             </div>
 
-            <div className="flex flex-col md:flex-row gap-8 mb-4">
+            <div className="flex flex-col md:flex-row gap-8 mb-6">
               <div className="flex-1 flex flex-col gap-2">
-                <label className="text-sm">Email</label>
+                <label className="text-sm font-medium text-gray-700">Email Address</label>
                 <input 
                   type="email" 
                   name="email"
                   value={formData.email}
                   onChange={handleChange}
                   required
-                  className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300"
+                  className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 text-gray-900"
                 />
               </div>
               {/* Address Field removed as requested */}
             </div>
 
             {/* Password Changes */}
-            <div className="flex flex-col gap-6 mt-4">
-              <h3 className="text-sm font-medium">Password Changes</h3>
+            <div className="flex flex-col gap-5 mt-6 pt-8 border-t border-gray-100">
+              <h3 className="text-lg font-semibold text-gray-900 mb-2">Password Changes</h3>
               
               <input 
                 type="password" 
@@ -213,7 +208,7 @@ export default function AccountPage() {
                 value={formData.currentPassword}
                 onChange={handleChange}
                 placeholder="Current Password"
-                className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300 w-full"
+                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 w-full text-gray-900"
               />
               <input 
                 type="password" 
@@ -221,7 +216,7 @@ export default function AccountPage() {
                 value={formData.newPassword}
                 onChange={handleChange}
                 placeholder="New Password"
-                className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300 w-full"
+                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 w-full text-gray-900"
               />
               <input 
                 type="password" 
@@ -229,19 +224,19 @@ export default function AccountPage() {
                 value={formData.confirmPassword}
                 onChange={handleChange}
                 placeholder="Confirm New Password"
-                className="bg-[#f5f5f5] rounded-[4px] px-4 py-3 focus:outline-none focus:ring-1 focus:ring-gray-300 w-full"
+                className="bg-gray-50 border border-gray-200 rounded-lg px-4 py-3.5 focus:outline-none focus:ring-2 focus:ring-[#DB4444]/20 focus:border-[#DB4444] transition-all duration-300 w-full text-gray-900"
               />
             </div>
 
             {/* Actions */}
-            <div className="flex justify-end items-center gap-8 mt-6">
-              <Link href="/" className="text-gray-900 hover:text-gray-600 transition-colors">
+            <div className="flex justify-end items-center gap-6 mt-10">
+              <Link href="/" className="text-gray-500 hover:text-gray-900 font-medium transition-colors">
                 Cancel
               </Link>
               <button 
                 type="submit" 
                 disabled={saving}
-                className="bg-[#db4444] text-white font-medium px-12 py-4 rounded-[4px] hover:bg-red-600 transition-colors disabled:bg-red-400"
+                className="bg-[#db4444] text-white font-semibold px-10 py-4 rounded-lg shadow-lg shadow-red-500/20 hover:bg-red-600 hover:shadow-red-500/40 hover:-translate-y-0.5 active:translate-y-0 transition-all duration-300 disabled:opacity-70 disabled:hover:translate-y-0"
               >
                 {saving ? "Saving..." : "Save Changes"}
               </button>

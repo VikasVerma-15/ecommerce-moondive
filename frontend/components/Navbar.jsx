@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import { usePathname, useRouter } from 'next/navigation';
 import { useState, useEffect, useRef } from 'react';
-import { Search, Heart, ShoppingCart, User, ShoppingBag, XCircle, Star, LogOut } from 'lucide-react';
+import { Search, Heart, ShoppingCart, User, ShoppingBag, XCircle, Star, LogOut, Menu, X } from 'lucide-react';
 import api from '@/lib/api';
 import { toast } from "react-hot-toast";
 import { signOut } from "next-auth/react";
@@ -15,6 +15,7 @@ const Navbar = () => {
   const [searchQuery, setSearchQuery] = useState('');
   const [dropdownOpen, setDropdownOpen] = useState(false);
   const dropdownRef = useRef(null);
+  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [cartCount, setCartCount] = useState(0);
   const [wishlistCount, setWishlistCount] = useState(0);
 
@@ -117,9 +118,15 @@ const Navbar = () => {
       <div className="section-width px-4 xl:px-0 py-[16px]">
         <div className="flex items-center justify-between h-[38px] lg:gap-[148px]">
           
-          {/* Logo */}
-          <div className="flex-shrink-0 flex items-center">
-            <Link href="/" className="text-2xl font-bold tracking-tight">
+          {/* Left Section: Mobile Menu & Logo */}
+          <div className="flex-shrink-0 flex items-center gap-4">
+            <button 
+              onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              className="lg:hidden text-gray-900 hover:text-[#DB4444] transition-colors"
+            >
+              {mobileMenuOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            </button>
+            <Link href="/" className="text-2xl md:text-3xl font-bold tracking-tight text-gray-900">
               Exclusive
             </Link>
           </div>
@@ -194,18 +201,6 @@ const Navbar = () => {
                           <User className="h-5 w-5 mr-3" strokeWidth={1.5} />
                           <span>Manage My Account</span>
                         </Link>
-                        <Link href="/orders" className="flex items-center px-4 py-2.5 hover:bg-white/10 transition-colors">
-                          <ShoppingBag className="h-5 w-5 mr-3" strokeWidth={1.5} />
-                          <span>My Order</span>
-                        </Link>
-                        <Link href="/cancellations" className="flex items-center px-4 py-2.5 hover:bg-white/10 transition-colors">
-                          <XCircle className="h-5 w-5 mr-3" strokeWidth={1.5} />
-                          <span>My Cancellations</span>
-                        </Link>
-                        <Link href="/reviews" className="flex items-center px-4 py-2.5 hover:bg-white/10 transition-colors">
-                          <Star className="h-5 w-5 mr-3" strokeWidth={1.5} />
-                          <span>My Reviews</span>
-                        </Link>
                         <button onClick={handleLogout} className="flex items-center w-full text-left px-4 py-2.5 hover:bg-white/10 transition-colors">
                           <LogOut className="h-5 w-5 mr-3" strokeWidth={1.5} />
                           <span>Logout</span>
@@ -220,6 +215,52 @@ const Navbar = () => {
           </div>
         </div>
       </div>
+
+      {/* Mobile Menu Overlay */}
+      {mobileMenuOpen && (
+        <div className="lg:hidden absolute top-full left-0 w-full bg-white shadow-xl border-t border-gray-100 flex flex-col py-4 px-6 z-40 animate-fade-in-up">
+          {/* Mobile Search */}
+          <div className="relative mb-6">
+            <input
+              type="text"
+              value={searchQuery}
+              onChange={(e) => setSearchQuery(e.target.value)}
+              onKeyDown={(e) => {
+                if (e.key === 'Enter') {
+                  handleSearch();
+                  setMobileMenuOpen(false);
+                }
+              }}
+              placeholder="Search products..."
+              className="w-full bg-[#f5f5f5] rounded-lg py-3 pl-4 pr-10 text-sm focus:outline-none focus:ring-2 focus:ring-[#DB4444]/50"
+            />
+            <button 
+              onClick={() => { handleSearch(); setMobileMenuOpen(false); }} 
+              className="absolute right-3 top-3 text-gray-500 hover:text-[#DB4444]"
+            >
+              <Search className="h-5 w-5" />
+            </button>
+          </div>
+
+          {/* Mobile Links */}
+          <div className="flex flex-col space-y-4">
+            <Link href="/" onClick={() => setMobileMenuOpen(false)} className="text-gray-900 font-medium hover:text-[#DB4444] py-2 border-b border-gray-50">
+              Home
+            </Link>
+            <Link href="/contact" onClick={() => setMobileMenuOpen(false)} className="text-gray-900 font-medium hover:text-[#DB4444] py-2 border-b border-gray-50">
+              Contact
+            </Link>
+            <Link href="/about" onClick={() => setMobileMenuOpen(false)} className="text-gray-900 font-medium hover:text-[#DB4444] py-2 border-b border-gray-50">
+              About
+            </Link>
+            {!isLoggedIn && (
+              <Link href="/signup" onClick={() => setMobileMenuOpen(false)} className="text-gray-900 font-medium hover:text-[#DB4444] py-2 border-b border-gray-50">
+                Sign Up
+              </Link>
+            )}
+          </div>
+        </div>
+      )}
     </div>
   );
 };
